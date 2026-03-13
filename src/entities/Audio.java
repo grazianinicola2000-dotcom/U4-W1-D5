@@ -20,8 +20,7 @@ public class Audio extends MultimediaElement implements Reproducible {
         StringBuilder volume = new StringBuilder();
         if (this.volume > 0) {
             for (int i = 0; i < this.volume; i++) {
-                String counter = "!";
-                volume.append(counter);
+                volume.append("!");
             }
         } else {
             volume.append("-MUTE-");
