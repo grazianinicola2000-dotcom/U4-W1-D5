@@ -1,6 +1,8 @@
 package entities;
 
-public class Images extends MultimediaElement {
+import interfaces.Bright;
+
+public class Images extends MultimediaElement implements Bright {
     private int brightness;
 
     //    BUILDER
@@ -10,11 +12,37 @@ public class Images extends MultimediaElement {
     }
 
     //    GETTER AND SETTER
-    public int getBrightness() {
-        return brightness;
+    public StringBuilder getBrightness() {
+        StringBuilder bright = new StringBuilder();
+        if (this.brightness > 0) {
+            for (int i = 0; i < this.brightness; i++) {
+                bright.append("*");
+            }
+        } else {
+            bright.append("!ATTENTION, increase the brightness!");
+        }
+        return bright;
     }
 
     public void setBrightness(int brightness) {
-        this.brightness = brightness;
+        if (brightness == 1) {
+            this.brightness++;
+        } else if (brightness == 0) {
+            this.brightness--;
+        }
+    }
+
+    public void show() {
+        System.out.println("You are viewing the image: " + getTitle() + " Brightness: " + getBrightness());
+    }
+
+    @Override
+    public void brightUP() {
+        setBrightness(1);
+    }
+
+    @Override
+    public void brigthDown() {
+        setBrightness(0);
     }
 }
