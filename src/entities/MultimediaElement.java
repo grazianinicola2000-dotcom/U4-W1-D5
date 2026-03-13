@@ -12,4 +12,11 @@ public abstract class MultimediaElement {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public String toString() {
+        return "MultimediaElement{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

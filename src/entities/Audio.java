@@ -16,7 +16,7 @@ public class Audio extends MultimediaElement implements Reproducible {
 
 
     //    GETTER E SETTER
-    public StringBuilder getVolume() {
+    private StringBuilder getVolume() {
         StringBuilder volume = new StringBuilder();
         if (this.volume > 0) {
             for (int i = 0; i < this.volume; i++) {
@@ -28,7 +28,7 @@ public class Audio extends MultimediaElement implements Reproducible {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    private void setVolume(int volume) {
         if (volume == 1) {
             this.volume++;
         } else if (volume == 0) {
@@ -36,7 +36,7 @@ public class Audio extends MultimediaElement implements Reproducible {
         }
     }
 
-    public int getDuration() {
+    private int getDuration() {
         return duration;
     }
 

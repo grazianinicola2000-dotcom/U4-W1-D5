@@ -12,7 +12,7 @@ public class Images extends MultimediaElement implements Bright {
     }
 
     //    GETTER AND SETTER
-    public StringBuilder getBrightness() {
+    private StringBuilder getBrightness() {
         StringBuilder bright = new StringBuilder();
         if (this.brightness > 0) {
             for (int i = 0; i < this.brightness; i++) {
@@ -24,7 +24,7 @@ public class Images extends MultimediaElement implements Bright {
         return bright;
     }
 
-    public void setBrightness(int brightness) {
+    private void setBrightness(int brightness) {
         if (brightness == 1) {
             this.brightness++;
         } else if (brightness == 0) {

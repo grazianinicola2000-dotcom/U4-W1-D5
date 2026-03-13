@@ -17,7 +17,7 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
     }
 
     //    GETTER AND SETTER
-    public StringBuilder getVolume() {
+    private StringBuilder getVolume() {
         StringBuilder volume = new StringBuilder();
         if (this.volume > 0) {
             for (int i = 0; i < this.volume; i++) {
@@ -29,7 +29,7 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    private void setVolume(int volume) {
         if (volume == 1) {
             this.volume++;
         } else if (volume == 0) {
@@ -37,7 +37,7 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         }
     }
 
-    public StringBuilder getBrightness() {
+    private StringBuilder getBrightness() {
         StringBuilder bright = new StringBuilder();
         if (this.brightness > 0) {
             for (int i = 0; i < this.brightness; i++) {
@@ -49,7 +49,7 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         return bright;
     }
 
-    public void setBrightness(int brightness) {
+    private void setBrightness(int brightness) {
         if (brightness == 1) {
             this.brightness++;
         } else if (brightness == 0) {
@@ -57,7 +57,7 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         }
     }
 
-    public int getDuration() {
+    private int getDuration() {
         return duration;
     }
 
