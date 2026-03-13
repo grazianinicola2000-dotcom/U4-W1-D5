@@ -66,7 +66,7 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         int duration = getDuration();
         if (duration != 0) {
             for (int i = 0; i < duration; i++) {
-                System.out.println(getTitle() + " Volume: " + getVolume() + " Brightness: " + getBrightness());
+                System.out.println("You are playing: " + getTitle() + " Volume: " + getVolume() + " Brightness: " + getBrightness());
             }
         }
     }

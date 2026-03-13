@@ -45,7 +45,7 @@ public class Audio extends MultimediaElement implements Reproducible {
         int duration = getDuration();
         if (duration != 0) {
             for (int i = 0; i < duration; i++) {
-                System.out.println(getTitle() + " Volume: " + getVolume());
+                System.out.println("You are playing: " + getTitle() + " Volume: " + getVolume());
             }
         }
     }

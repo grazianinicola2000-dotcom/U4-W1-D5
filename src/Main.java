@@ -3,7 +3,6 @@ import entities.Images;
 import entities.MultimediaElement;
 import entities.Video;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -47,12 +46,12 @@ public class Main {
 //        i1.show();
 
         MultimediaElement[] media = new MultimediaElement[5];
-
+        System.out.println("---------------CREATE 5 MEDIA ELEMENTS TO SAVE---------------");
         for (int i = 0; i < media.length; i++) {
             String mediaFormat = "";
 
+            System.out.println("Select a media format (video, audio, or image):");
             while (true) {
-                System.out.println("Select a media format (video, audio, or image):");
                 String format = scanner.nextLine().toLowerCase();
                 if (!Objects.equals(format, "video") && !Objects.equals(format, "audio") && !Objects.equals(format, "image")) {
                     System.out.println("-----Invalid element format-----");
@@ -68,8 +67,8 @@ public class Main {
                 int videoVolume = 0;
                 int videoBright = 0;
                 int videoDuration = 0;
+                System.out.println("Insert volume (must be a value between 0 and 10)");
                 while (true) {
-                    System.out.println("Insert volume (must be a value between 0 and 10)");
                     int volume = Integer.parseInt(scanner.nextLine());
                     if (0 <= volume && volume <= 10) {
                         videoVolume = volume;
@@ -78,8 +77,8 @@ public class Main {
                         System.out.println("-----invalid value-----");
                     }
                 }
+                System.out.println("Insert brightness (must be a value between 0 and 10)");
                 while (true) {
-                    System.out.println("Insert brightness (must be a value between 0 and 10)");
                     int bright = Integer.parseInt(scanner.nextLine());
                     if (0 <= bright && bright <= 10) {
                         videoBright = bright;
@@ -88,10 +87,10 @@ public class Main {
                         System.out.println("-----invalid value-----");
                     }
                 }
+                System.out.println("Insert duration (must be a value between 1 and 5)");
                 while (true) {
-                    System.out.println("Insert duration (must be a value between 0 and 5)");
                     int duration = Integer.parseInt(scanner.nextLine());
-                    if (0 <= duration && duration <= 5) {
+                    if (1 <= duration && duration <= 5) {
                         videoDuration = duration;
                         break;
                     } else {
@@ -106,8 +105,8 @@ public class Main {
                 String title = scanner.nextLine();
                 int audioVolume = 0;
                 int audioDuration = 0;
+                System.out.println("Insert volume (must be a value between 0 and 10)");
                 while (true) {
-                    System.out.println("Insert volume (must be a value between 0 and 10)");
                     int volume = Integer.parseInt(scanner.nextLine());
                     if (0 <= volume && volume <= 10) {
                         audioVolume = volume;
@@ -116,10 +115,10 @@ public class Main {
                         System.out.println("-----invalid value-----");
                     }
                 }
+                System.out.println("Insert duration (must be a value between 1 and 5)");
                 while (true) {
-                    System.out.println("Insert duration (must be a value between 0 and 5)");
                     int duration = Integer.parseInt(scanner.nextLine());
-                    if (0 <= duration && duration <= 5) {
+                    if (1 <= duration && duration <= 5) {
                         audioDuration = duration;
                         break;
                     } else {
@@ -133,8 +132,8 @@ public class Main {
                 System.out.println("Insert title");
                 String title = scanner.nextLine();
                 int imageBright = 0;
+                System.out.println("Insert brightness (must be a value between 0 and 10)");
                 while (true) {
-                    System.out.println("Insert brightness (must be a value between 0 and 10)");
                     int bright = Integer.parseInt(scanner.nextLine());
                     if (0 <= bright && bright <= 10) {
                         imageBright = bright;
@@ -147,7 +146,30 @@ public class Main {
             }
         }
 
-        System.out.println(Arrays.toString(media));
+        System.out.println("WRITE A NUMBER FROM 1 TO 5 TO INTERACT WITH THE RESPECTIVE ELEMENT");
+        while (true) {
+            System.out.println("type '0' to exit");
+            int selected = 0;
+            while (true) {
+                int element = Integer.parseInt(scanner.nextLine());
+                if (0 <= element && element <= 5) {
+                    selected = element;
+                    break;
+                } else {
+                    System.out.println("-----invalid value-----");
+                }
+            }
+            if (selected == 0) break;
+            if (media[selected - 1] instanceof Images) {
+                ((Images) media[selected - 1]).show();
+            } else if (media[selected - 1] instanceof Video) {
+                ((Video) media[selected - 1]).play();
+            } else if (media[selected - 1] instanceof Audio) {
+                ((Audio) media[selected - 1]).play();
+            }
+
+        }
+
 
     }
 }
