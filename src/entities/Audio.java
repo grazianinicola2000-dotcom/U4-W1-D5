@@ -1,6 +1,8 @@
 package entities;
 
-public class Audio extends MultimediaElement {
+import interfaces.Reproducible;
+
+public class Audio extends MultimediaElement implements Reproducible {
     private int volume;
     private int duration;
 
@@ -14,15 +16,48 @@ public class Audio extends MultimediaElement {
 
 
     //    GETTER E SETTER
-    public int getVolume() {
+    public StringBuilder getVolume() {
+        StringBuilder volume = new StringBuilder();
+        if (this.volume > 0) {
+            for (int i = 0; i < this.volume; i++) {
+                String counter = "!";
+                volume.append(counter);
+            }
+        } else {
+            volume.append("-MUTE-");
+        }
         return volume;
     }
 
     public void setVolume(int volume) {
-        this.volume = volume;
+        if (volume == 1) {
+            this.volume++;
+        } else if (volume == 0) {
+            this.volume--;
+        }
     }
 
     public int getDuration() {
         return duration;
+    }
+
+    @Override
+    public void play() {
+        int duration = getDuration();
+        if (duration != 0) {
+            for (int i = 0; i < duration; i++) {
+                System.out.println(getTitle() + " Volume: " + getVolume());
+            }
+        }
+    }
+
+    @Override
+    public void volumeUp() {
+        setVolume(1);
+    }
+
+    @Override
+    public void volumeDown() {
+        setVolume(0);
     }
 }
