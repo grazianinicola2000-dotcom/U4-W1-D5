@@ -35,6 +35,11 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         } else if (volume == 0) {
             this.volume--;
         }
+        if (this.volume < 1) {
+            this.volume = 0;
+        } else if (this.volume > 10) {
+            this.volume = 10;
+        }
     }
 
     private StringBuilder getBrightness() {
@@ -55,6 +60,11 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
         } else if (brightness == 0) {
             this.brightness--;
         }
+        if (this.brightness < 1) {
+            this.brightness = 0;
+        } else if (this.brightness > 10) {
+            this.brightness = 10;
+        }
     }
 
     private int getDuration() {
@@ -74,20 +84,24 @@ public class Video extends MultimediaElement implements Reproducible, Bright {
     @Override
     public void volumeUp() {
         setVolume(1);
+        System.out.println("OK-----Increased volume-----OK");
     }
 
     @Override
     public void volumeDown() {
         setVolume(0);
+        System.out.println("OK-----Decreased volume-----OK");
     }
 
     @Override
     public void brightUP() {
         setBrightness(1);
+        System.out.println("OK-----Increased brightness-----OK");
     }
 
     @Override
     public void brigthDown() {
         setBrightness(0);
+        System.out.println("OK-----Decreased brightness-----OK");
     }
 }

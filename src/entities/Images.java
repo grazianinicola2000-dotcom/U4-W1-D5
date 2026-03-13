@@ -30,6 +30,11 @@ public class Images extends MultimediaElement implements Bright {
         } else if (brightness == 0) {
             this.brightness--;
         }
+        if (this.brightness < 1) {
+            this.brightness = 0;
+        } else if (this.brightness > 10) {
+            this.brightness = 10;
+        }
     }
 
     public void show() {
@@ -39,10 +44,12 @@ public class Images extends MultimediaElement implements Bright {
     @Override
     public void brightUP() {
         setBrightness(1);
+        System.out.println("OK-----Increased brightness-----OK");
     }
 
     @Override
     public void brigthDown() {
         setBrightness(0);
+        System.out.println("OK-----Decreased brightness-----OK");
     }
 }

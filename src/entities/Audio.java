@@ -34,6 +34,11 @@ public class Audio extends MultimediaElement implements Reproducible {
         } else if (volume == 0) {
             this.volume--;
         }
+        if (this.volume < 1) {
+            this.volume = 0;
+        } else if (this.volume > 10) {
+            this.volume = 10;
+        }
     }
 
     private int getDuration() {
@@ -53,10 +58,12 @@ public class Audio extends MultimediaElement implements Reproducible {
     @Override
     public void volumeUp() {
         setVolume(1);
+        System.out.println("OK-----Increased volume-----OK");
     }
 
     @Override
     public void volumeDown() {
         setVolume(0);
+        System.out.println("OK-----Decreased volume-----OK");
     }
 }

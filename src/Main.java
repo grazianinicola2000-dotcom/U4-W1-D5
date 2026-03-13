@@ -52,13 +52,15 @@ public class Main {
 
             System.out.println("Select a media format (video, audio, or image):");
             while (true) {
+
                 String format = scanner.nextLine().toLowerCase();
                 if (!Objects.equals(format, "video") && !Objects.equals(format, "audio") && !Objects.equals(format, "image")) {
-                    System.out.println("-----Invalid element format-----");
+                    System.out.println("!-----Invalid element format-----!");
                 } else {
                     mediaFormat = format;
                     break;
                 }
+
             }
 
             if (mediaFormat.equals("video")) {
@@ -69,32 +71,44 @@ public class Main {
                 int videoDuration = 0;
                 System.out.println("Insert volume (must be a value between 0 and 10)");
                 while (true) {
-                    int volume = Integer.parseInt(scanner.nextLine());
-                    if (0 <= volume && volume <= 10) {
-                        videoVolume = volume;
-                        break;
-                    } else {
-                        System.out.println("-----invalid value-----");
+                    try {
+                        int volume = Integer.parseInt(scanner.nextLine());
+                        if (0 <= volume && volume <= 10) {
+                            videoVolume = volume;
+                            break;
+                        } else {
+                            System.out.println("!-----invalid value-----!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("!-----The field needs a number-----!");
                     }
                 }
                 System.out.println("Insert brightness (must be a value between 0 and 10)");
                 while (true) {
-                    int bright = Integer.parseInt(scanner.nextLine());
-                    if (0 <= bright && bright <= 10) {
-                        videoBright = bright;
-                        break;
-                    } else {
-                        System.out.println("-----invalid value-----");
+                    try {
+                        int bright = Integer.parseInt(scanner.nextLine());
+                        if (0 <= bright && bright <= 10) {
+                            videoBright = bright;
+                            break;
+                        } else {
+                            System.out.println("!-----invalid value-----!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("!-----The field needs a number-----!");
                     }
                 }
                 System.out.println("Insert duration (must be a value between 1 and 5)");
                 while (true) {
-                    int duration = Integer.parseInt(scanner.nextLine());
-                    if (1 <= duration && duration <= 5) {
-                        videoDuration = duration;
-                        break;
-                    } else {
-                        System.out.println("-----invalid value-----");
+                    try {
+                        int duration = Integer.parseInt(scanner.nextLine());
+                        if (1 <= duration && duration <= 5) {
+                            videoDuration = duration;
+                            break;
+                        } else {
+                            System.out.println("!-----invalid value-----!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("!-----The field needs a number-----!");
                     }
                 }
                 media[i] = new Video(title, videoVolume, videoBright, videoDuration);
@@ -107,22 +121,30 @@ public class Main {
                 int audioDuration = 0;
                 System.out.println("Insert volume (must be a value between 0 and 10)");
                 while (true) {
-                    int volume = Integer.parseInt(scanner.nextLine());
-                    if (0 <= volume && volume <= 10) {
-                        audioVolume = volume;
-                        break;
-                    } else {
-                        System.out.println("-----invalid value-----");
+                    try {
+                        int volume = Integer.parseInt(scanner.nextLine());
+                        if (0 <= volume && volume <= 10) {
+                            audioVolume = volume;
+                            break;
+                        } else {
+                            System.out.println("!-----invalid value-----!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("!-----The field needs a number-----!");
                     }
                 }
                 System.out.println("Insert duration (must be a value between 1 and 5)");
                 while (true) {
-                    int duration = Integer.parseInt(scanner.nextLine());
-                    if (1 <= duration && duration <= 5) {
-                        audioDuration = duration;
-                        break;
-                    } else {
-                        System.out.println("-----invalid value-----");
+                    try {
+                        int duration = Integer.parseInt(scanner.nextLine());
+                        if (1 <= duration && duration <= 5) {
+                            audioDuration = duration;
+                            break;
+                        } else {
+                            System.out.println("!-----invalid value-----!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("!-----The field needs a number-----!");
                     }
                 }
                 media[i] = new Audio(title, audioVolume, audioDuration);
@@ -134,20 +156,24 @@ public class Main {
                 int imageBright = 0;
                 System.out.println("Insert brightness (must be a value between 0 and 10)");
                 while (true) {
-                    int bright = Integer.parseInt(scanner.nextLine());
-                    if (0 <= bright && bright <= 10) {
-                        imageBright = bright;
-                        break;
-                    } else {
-                        System.out.println("-----invalid value-----");
+                    try {
+                        int bright = Integer.parseInt(scanner.nextLine());
+                        if (0 <= bright && bright <= 10) {
+                            imageBright = bright;
+                            break;
+                        } else {
+                            System.out.println("!-----invalid value-----!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("!-----The field needs a number-----!");
                     }
                 }
                 media[i] = new Images(title, imageBright);
             }
         }
 
-        System.out.println("WRITE A NUMBER FROM 1 TO 5 TO INTERACT WITH THE RESPECTIVE ELEMENT");
         while (true) {
+            System.out.println("WRITE A NUMBER FROM 1 TO 5 TO INTERACT WITH THE RESPECTIVE ELEMENT");
             System.out.println("type '0' to exit");
             int selected = 0;
             while (true) {
@@ -156,20 +182,59 @@ public class Main {
                     selected = element;
                     break;
                 } else {
-                    System.out.println("-----invalid value-----");
+                    System.out.println("!-----invalid value-----!");
                 }
             }
             if (selected == 0) break;
-            if (media[selected - 1] instanceof Images) {
-                ((Images) media[selected - 1]).show();
-            } else if (media[selected - 1] instanceof Video) {
-                ((Video) media[selected - 1]).play();
-            } else if (media[selected - 1] instanceof Audio) {
-                ((Audio) media[selected - 1]).play();
+
+            while (true) {
+                if (media[selected - 1] instanceof Video) {
+                    System.out.println("Type:");
+                    System.out.println("'p' Play");
+                    System.out.println("'-v', '+v' Volume");
+                    System.out.println("'-b', '+b' Brightness");
+                    System.out.println("Type 'back' to return to the item selection");
+                    String command = scanner.nextLine();
+                    if (Objects.equals(command, "back")) break;
+                    switch (command) {
+                        case "p" -> ((Video) media[selected - 1]).play();
+                        case "+v" -> ((Video) media[selected - 1]).volumeUp();
+                        case "-v" -> ((Video) media[selected - 1]).volumeDown();
+                        case "+b" -> ((Video) media[selected - 1]).brightUP();
+                        case "-b" -> ((Video) media[selected - 1]).brigthDown();
+                        default -> System.out.println("!-----invalid value-----!");
+                    }
+                } else if (media[selected - 1] instanceof Audio) {
+                    System.out.println("Type:");
+                    System.out.println("'p' Play");
+                    System.out.println("'-v', '+v' Volume");
+                    System.out.println("Type 'back' to return to the item selection");
+                    String command = scanner.nextLine();
+                    if (Objects.equals(command, "back")) break;
+                    switch (command) {
+                        case "p" -> ((Audio) media[selected - 1]).play();
+                        case "+v" -> ((Audio) media[selected - 1]).volumeUp();
+                        case "-v" -> ((Audio) media[selected - 1]).volumeDown();
+                        default -> System.out.println("!-----invalid value-----!");
+                    }
+                } else if (media[selected - 1] instanceof Images) {
+                    System.out.println("Type:");
+                    System.out.println("'s' Show");
+                    System.out.println("'-b', '+b' Brightness");
+                    System.out.println("Type 'back' to return to the item selection");
+                    String command = scanner.nextLine();
+                    if (Objects.equals(command, "back")) break;
+                    switch (command) {
+                        case "s" -> ((Images) media[selected - 1]).show();
+                        case "+b" -> ((Images) media[selected - 1]).brightUP();
+                        case "-b" -> ((Images) media[selected - 1]).brigthDown();
+                        default -> System.out.println("!-----invalid value-----!");
+                    }
+                }
+
             }
 
+
         }
-
-
     }
 }
